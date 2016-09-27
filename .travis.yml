@@ -8,3 +8,13 @@ before_install:
 
 script:
   - docker run -v $(pwd):/src trusch/susi-builder:stable
+  - cp build/*.deb ./susi-mqtt-${TRAVIS_BRANCH}-linux-amd64.deb
+
+deploy:
+  provider: releases
+  file: "susi-mqtt-${TRAVIS_BRANCH}-linux-amd64.deb"
+  skip_cleanup: true
+  on:
+    tags: true
+  api_key:
+    secure: nXA045PrQdlemw8lKtAoJPx9dlcdulebPCW4KgJbPAjavfs5uDMccK63YlWYh7xmSnDr52Fz6/WfzTt5scoMKAy39eg0HBVcpaXrDsFHbofBxEIbOhu2Z0lwhzIMo2Un4e4yqRguyQf0mYbTF/JxQYlvYxWPKR9YiPN6snvrkJDFjXavreOIk5QOZTrrP0Vt/g1Q0yzR2pmZ5u4GKnn3uOHmNmhVqIgv5p5BlszsqFw7lUIUIapvON08IhxBtJE0SB+yFCxuV1nH2um53cDj6fq5c79BPoOVkr+V2BHZ66G8O81wXyRK/5vkG9kEYE97au2KqdGLexPtl9c/PWSMdjoke+mLJwdyp4HpG4uj8RO/CgFkHrQRlOs3Q5GbV4r5zLARQA0n/LHuoPkveirDRyJK+cNwt2AAvUPQK4BMq/FKZF6WOA+bkQmkCy9J5sdWiQpZOImu0hq7EORATzpbfuPt7G0UUA1uKucGhpJ4IdNH3ts9bGEp7gTvY0BvM21uuySOzoIbs+dJ+laK3047DbzyBezhwSszbM4d+L8GnjSb5XRAXI+16mr5mV63aNs186rlko/CJrnm6g8yEOqLbDxeP7bI1pq6hXMD3fX89Mm/M5PL1fppbLwELe1bmf1Sx3vZw6fxn0xu1GlnFdNja5cIh6P/gziDop9Fa35zZ9k=
