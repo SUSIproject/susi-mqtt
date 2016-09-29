@@ -5,6 +5,7 @@ services:
 
 before_install:
   - docker pull trusch/susi-builder:stable
+  - docker pull trusch/susi-arm-builder:stable
 
 script:
   - docker run -v $(pwd):/src trusch/susi-builder:stable
@@ -16,7 +17,7 @@ deploy:
   provider: releases
   file:
     - "susi-mqtt-${TRAVIS_BRANCH}-linux-amd64.deb"
-    - "susi-mqtt-${TRAVIS_BRANCH}-linux-armhf.deb" 
+    - "susi-mqtt-${TRAVIS_BRANCH}-linux-armhf.deb"
   skip_cleanup: true
   on:
     tags: true
